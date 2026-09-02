@@ -1,0 +1,471 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20261.26.0226.1626                               -->
+<workbook original-version='18.1' source-build='2026.1.0 (20261.26.0226.1626)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AnimationOnByDefault />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='country_risk_summary (mart.country_risk_summary) (finance_fraud)' inline='true' name='federated.0v5zjdu1l65l8219rebc509yjdy9' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='localhost' name='postgres.1tlewy608axiem102lhzh0l3abrs'>
+            <connection authentication='username-password' class='postgres' dbname='finance_fraud' one-time-sql='' port='5432' server='localhost' username='postgres' />
+          </named-connection>
+        </named-connections>
+        <relation connection='postgres.1tlewy608axiem102lhzh0l3abrs' name='country_risk_summary' table='[mart].[country_risk_summary]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>country_code</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[country_code]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>country_code</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>total_transactions</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[total_transactions]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>total_transactions</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>approved_transactions</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[approved_transactions]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>approved_transactions</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>failed_transactions</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[failed_transactions]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>failed_transactions</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>total_transaction_amount</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[total_transaction_amount]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>total_transaction_amount</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>avg_transaction_amount</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[avg_transaction_amount]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>avg_transaction_amount</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>cross_border_transactions</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[cross_border_transactions]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>cross_border_transactions</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>chargeback_count</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[chargeback_count]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>chargeback_count</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>chargeback_amount</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[chargeback_amount]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>chargeback_amount</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>alert_count</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[alert_count]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>alert_count</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>approval_rate_pct</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[approval_rate_pct]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>approval_rate_pct</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>failure_rate_pct</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[failure_rate_pct]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>failure_rate_pct</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>cross_border_rate_pct</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[cross_border_rate_pct]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>cross_border_rate_pct</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>chargeback_rate_pct</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[chargeback_rate_pct]</local-name>
+            <parent-name>[country_risk_summary]</parent-name>
+            <remote-alias>chargeback_rate_pct</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='country_risk_summary' datatype='table' name='[__tableau_internal_object_id__].[country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7]' role='measure' type='quantitative' />
+      <column caption='Alert Count' datatype='integer' name='[alert_count]' role='measure' type='quantitative' />
+      <column caption='Approval Rate Pct' datatype='real' name='[approval_rate_pct]' role='measure' type='quantitative' />
+      <column caption='Approved Transactions' datatype='integer' name='[approved_transactions]' role='measure' type='quantitative' />
+      <column caption='Avg Transaction Amount' datatype='real' name='[avg_transaction_amount]' role='measure' type='quantitative' />
+      <column caption='Chargeback Amount' datatype='real' name='[chargeback_amount]' role='measure' type='quantitative' />
+      <column caption='Chargeback Count' datatype='integer' name='[chargeback_count]' role='measure' type='quantitative' />
+      <column caption='Chargeback Rate Pct' datatype='real' name='[chargeback_rate_pct]' role='measure' type='quantitative' />
+      <column caption='Country Code' datatype='string' name='[country_code]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column caption='Cross Border Rate Pct' datatype='real' name='[cross_border_rate_pct]' role='measure' type='quantitative' />
+      <column caption='Cross Border Transactions' datatype='integer' name='[cross_border_transactions]' role='measure' type='quantitative' />
+      <column caption='Failed Transactions' datatype='integer' name='[failed_transactions]' role='measure' type='quantitative' />
+      <column caption='Failure Rate Pct' datatype='real' name='[failure_rate_pct]' role='measure' type='quantitative' />
+      <column caption='Total Transaction Amount' datatype='real' name='[total_transaction_amount]' role='measure' type='quantitative' />
+      <column caption='Total Transactions' datatype='integer' name='[total_transactions]' role='measure' type='quantitative' />
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Australia&quot;' />
+      </semantic-values>
+      <date-options start-of-week='monday' />
+      <object-graph>
+        <objects>
+          <object caption='country_risk_summary' id='country_risk_summary (mart.country_risk_summary)_E7698BA44AF3473FBC258F2EEEAAF1A7'>
+            <properties context=''>
+              <relation connection='postgres.1tlewy608axiem102lhzh0l3abrs' name='country_risk_summary' table='[mart].[country_risk_summary]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Chargeback Rate by Country'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='country_risk_summary (mart.country_risk_summary) (finance_fraud)' name='federated.0v5zjdu1l65l8219rebc509yjdy9' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0v5zjdu1l65l8219rebc509yjdy9'>
+            <column caption='Chargeback Rate Pct' datatype='real' name='[chargeback_rate_pct]' role='measure' type='quantitative' />
+            <column caption='Country Code' datatype='string' name='[country_code]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column-instance column='[country_code]' derivation='None' name='[none:country_code:nk]' pivot='key' type='nominal' />
+            <column-instance column='[chargeback_rate_pct]' derivation='Sum' name='[sum:chargeback_rate_pct:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0v5zjdu1l65l8219rebc509yjdy9].[none:country_code:nk]' value='166' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='height-header' value='10' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#e15759' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0v5zjdu1l65l8219rebc509yjdy9].[none:country_code:nk]</rows>
+        <cols>[federated.0v5zjdu1l65l8219rebc509yjdy9].[sum:chargeback_rate_pct:qk]</cols>
+      </table>
+      <simple-id uuid='{1D7B8431-5061-4B1D-B9CE-7E6EA43C6193}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Chargeback Rate by Country'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0v5zjdu1l65l8219rebc509yjdy9].[none:country_code:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{BBE33331-4D22-4871-B2E4-75B5177B0F8E}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='338' name='Chargeback Rate by Country' width='384'>
+      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
+      UlNTk0pKSlReXi6n06n169dHaA8BM9n8/CQT/XDlyhX997//1SeffBJ0p050dLQeeOAB3Xbb
+      bSFfBNPc3KwDBw5o//79QT/8stvtWrJkie66664Bffv3+XyqWffzq14PAAGAq+Tz+VRVVaUL
+      Fy7I4XDI7XbL7XbL6XT2a/3W1lbV1NTI5/MpNjZW8fHxcjgGfiBKAAADRwBgWCMAgIHjIjAA
+      GIoAAABDEQAAYCgCAAAMxUVgDGs+n09jx46NdBlG8Hq9kqSYmJgIV2IWK+edIwAAMBQBAACG
+      4hQQhjWfzxfpEoBhiyMAADAURwAAYCiOADCs+Xw+TgMNIeY7MqyadwIAAAxFAACAoQgAADAU
+      AQAAhiIAAMBQBAAAGIoAAABDEQAAYCgCAAAMxaMgAMBQHAEAgKEIAAAwFAEAAIYiAADAUAQA
+      ABiKAAAAQxEAAGAoAgAADEUAAIChCAAAMBQBAACGckS6AMBKXq9XxcXFOn36tLxer2bOnKnr
+      r79eKSkp1zTu6dOnderUKX399deKi4tTenq6MjMzNWbMmEGq3FpWzUtAVVWVCgoKdPPNNysh
+      IWFQxhwJrJh3v9+vS5cuyePxqLy8XI2NjXK5XJo+fbrmzZsXdl0eBocR69KlS9q0aZPq6up6
+      LLfZbHr44Yf1ox/9aEDjbtmyRTt27AhanpSUpF//+teKjY0d0LhDxap5kaS6ujpt27ZNhw4d
+      UldXl5544gnddNNN11ryiGDFvFdWVmrz5s0qKysL2Z6amqr169dr0qRJIds5AsCI1NDQoBdf
+      fFGXL19WTk6O7rjjDsXGxurkyZPavHmzPvjgA9ntdt1+++1XNe7WrVu1Y8cOTZw4UY899phm
+      z56t6upq7dy5U0ePHtWf/vQnPffcc4qOjrZoz66NVfPi9Xq1Y8cO7du3Tx0dHRZVP3xZMe8H
+      DhzQe++9p87OTmVkZGju3LlKS0vT6NGjVVxcrMLCQnk8Hr3xxhv6zW9+I7s9+Iw/AYARad++
+      fbp8+bKWLl2qtWvXdi9fvHixJkyYoJdfflnbt2/XsmXLQv5hhNLS0qLPPvtMY8eO1TPPPKOk
+      pCRJUnJystatW6f29nYdP35chw4dUk5OjhW7dc2smJfa2lo9//zzam1tVUxMjFatWqWoqCi9
+      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
+      wI4AAAAASUVORK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>
