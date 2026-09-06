@@ -1,0 +1,10 @@
+metric,value_pct
+Overall chargeback rate,1.71
+Alerted transaction chargeback rate,4.48
+Non-alerted transaction chargeback rate,1.28
+Cross-border chargeback rate,2.37
+Domestic chargeback rate,1.65
+Web chargeback rate,1.82
+App chargeback rate,1.75
+API chargeback rate,1.49
+POS chargeback rate,1.24
