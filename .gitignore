@@ -8,3 +8,5 @@
 .env
 __pycache__/
 *.pyc
+system.env
+*.bak
