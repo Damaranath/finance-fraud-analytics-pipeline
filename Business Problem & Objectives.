@@ -1,0 +1,14 @@
+## Business Problem
+
+Financial transaction platforms generate large volumes of payment activity, but identifying meaningful risk patterns requires more than simply storing transaction records.
+
+The project was designed to answer practical analytical questions such as:
+
+- Which payment failures occur most frequently?
+- Which transaction channels and payment methods show higher failure or chargeback exposure?
+- Are cross-border transactions associated with greater downstream risk?
+- Do transactions flagged by fraud rules show higher chargeback rates?
+- Which fraud rules generate the highest-risk alerts?
+- How can transaction, chargeback and alert data be transformed into clear reporting for business and risk teams?
+
+The objective was to build an end-to-end analytics workflow that could structure transactional data, apply explainable fraud-risk rules, validate data quality, create reusable analytical datasets and communicate findings through SQL, Python and Tableau.
