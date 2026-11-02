@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 # Finance & Fraud Analytics Pipeline
 
 An end-to-end finance and fraud analytics project built using PostgreSQL, SQL, Python, pandas, Matplotlib, Tableau and FastAPI.
