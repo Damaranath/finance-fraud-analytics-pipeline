@@ -30,7 +30,11 @@ The SQL marts are also exposed through a **FastAPI REST API**, so applications a
 | `GET /customers/{customer_id}/risk` | Risk profile for a single customer (`404` if not found) |
 | `GET /dashboard` | Live dashboard built on the endpoints above |
 
-FastAPI generates interactive documentation at `/docs`, where every endpoint can be tested in the browser:
+FastAPI generates interactive documentation at `/docs`. Endpoints are grouped by area (System, Transactions, Chargebacks, Fraud alerts, Risk), each with a typed response model:
+
+![API documentation overview with grouped endpoints](docs/images/api-docs-overview.png)
+
+Every endpoint can be tested in the browser, for example a live `/summary` response:
 
 ![Swagger UI showing a live /summary response](docs/images/api-swagger.png)
 
