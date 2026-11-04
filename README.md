@@ -24,7 +24,7 @@ The SQL marts are also exposed through a **FastAPI REST API**, so applications a
 |---|---|
 | `GET /health` | API and database status (returns `503` if the database is unreachable) |
 | `GET /summary` | Transaction counts by status (approved, failed, pending, reversed) and total amount |
-| `GET /chargebacks` | Total chargebacks and chargeback rate |
+| `GET /chargebacks` | Total chargebacks, plus chargeback rate over all transactions and over approved transactions |
 | `GET /alerts` | Alert count and average risk score per fraud rule |
 | `GET /country-risk` | Approval, failure, cross-border and chargeback rates by country |
 | `GET /customers/{customer_id}/risk` | Risk profile for a single customer (`404` if not found) |
@@ -40,6 +40,7 @@ FastAPI generates interactive documentation at `/docs`, where every endpoint can
 -   NULL-safe numeric conversion, so missing values return `null` instead of crashing the endpoint.
 -   Meaningful HTTP status codes: `404` for unknown customers, `503` when the database is down.
 -   Summary counts reconcile to the transaction total across all four transaction statuses.
+-   Typed Pydantic response models, so `/docs` shows the exact shape of every response and invalid data is caught before it is returned.
 
 ## Business Problem
 
@@ -538,11 +539,13 @@ The `.env` file is excluded from version control through `.gitignore` and should
 ### 5. Run the Python Analysis
 
 ``` bash
-python python/01_data_quality.py
-python python/02_eda.py
-python python/03_fraud_analysis.py
-python python/04_visual_analysis.py
+python "python/01 data quality.py"
+python "python/02 eda.py"
+python "python/03 fraud analysis.py"
+python "python/04 visual analysis.py"
 ```
+
+The file names contain spaces, so keep the quotes.
 
 The final script generates the analytical charts and summary outputs inside the `outputs/` folder.
 

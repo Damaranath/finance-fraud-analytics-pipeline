@@ -1,5 +1,6 @@
 import os
 import psycopg2
+from psycopg2.extras import RealDictCursor
 from contextlib import contextmanager
 from dotenv import load_dotenv
 
@@ -18,7 +19,8 @@ def get_connection():
 @contextmanager
 def get_cursor():
     conn = get_connection()
-    cursor = conn.cursor()
+    # RealDictCursor returns rows as dicts: row["rule_name"] instead of row[0]
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
 
     try:
         yield cursor

@@ -3,18 +3,23 @@ from pathlib import Path
 import psycopg2
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
+
 from api.database import get_cursor
+from api.schemas import (
+    AlertRuleSummary,
+    ChargebackResponse,
+    CountryRisk,
+    CustomerRisk,
+    ErrorResponse,
+    HealthResponse,
+    SummaryResponse,
+)
 
 app = FastAPI(
     title="Finance Fraud Analytics API",
-    version="1.0.0"
+    description="Fraud, chargeback and risk metrics served from PostgreSQL analytical marts.",
+    version="1.1.0"
 )
-
-
-def to_float(value):
-    """Convert a DB number to float, but keep NULL as None instead of crashing."""
-    return float(value) if value is not None else None
-
 
 DASHBOARD_FILE = Path(__file__).parent / "static" / "dashboard.html"
 
@@ -31,8 +36,14 @@ def dashboard():
     return DASHBOARD_FILE.read_text(encoding="utf-8")
 
 
-@app.get("/health")
+@app.get(
+    "/health",
+    response_model=HealthResponse,
+    tags=["System"],
+    responses={503: {"model": HealthResponse, "description": "Database unreachable"}},
+)
 def health_check():
+    """Check that the API is running and can reach the database."""
     try:
         with get_cursor() as cursor:
             cursor.execute("SELECT 1;")
@@ -43,13 +54,12 @@ def health_check():
             content={"status": "error", "database": "unreachable"}
         )
 
-    return {
-        "status": "ok",
-        "database": "connected"
-    }
+    return {"status": "ok", "database": "connected"}
 
-@app.get("/summary")
+
+@app.get("/summary", response_model=SummaryResponse, tags=["Transactions"])
 def get_summary():
+    """Transaction counts by status and the total transaction amount."""
     with get_cursor() as cursor:
         cursor.execute("""
             SELECT
@@ -61,20 +71,12 @@ def get_summary():
                 ROUND(SUM(amount)::numeric, 2) AS total_transaction_amount
             FROM core.transactions;
         """)
+        return cursor.fetchone()
 
-        row = cursor.fetchone()
 
-    return {
-        "total_transactions": row[0],
-        "approved_transactions": row[1],
-        "failed_transactions": row[2],
-        "pending_transactions": row[3],
-        "reversed_transactions": row[4],
-        "total_transaction_amount": to_float(row[5])
-    }
-
-@app.get("/chargebacks")
+@app.get("/chargebacks", response_model=ChargebackResponse, tags=["Chargebacks"])
 def get_chargebacks():
+    """Total chargebacks, plus the chargeback rate over all transactions and over approved transactions."""
     with get_cursor() as cursor:
         cursor.execute("""
             SELECT
@@ -83,19 +85,20 @@ def get_chargebacks():
                     COUNT(*) * 100.0 /
                     NULLIF((SELECT COUNT(*) FROM core.transactions), 0),
                     2
-                ) AS chargeback_rate_pct
+                ) AS chargeback_rate_pct,
+                ROUND(
+                    COUNT(*) * 100.0 /
+                    NULLIF((SELECT COUNT(*) FROM core.transactions WHERE status = 'approved'), 0),
+                    2
+                ) AS chargeback_rate_approved_pct
             FROM core.chargebacks;
         """)
+        return cursor.fetchone()
 
-        row = cursor.fetchone()
 
-    return {
-        "total_chargebacks": row[0],
-        "chargeback_rate_pct": to_float(row[1])
-    }
-
-@app.get("/alerts")
+@app.get("/alerts", response_model=list[AlertRuleSummary], tags=["Fraud alerts"])
 def get_alerts():
+    """Alert count and average risk score for each fraud rule."""
     with get_cursor() as cursor:
         cursor.execute("""
             SELECT
@@ -106,20 +109,12 @@ def get_alerts():
             GROUP BY rule_name
             ORDER BY alert_count DESC;
         """)
+        return cursor.fetchall()
 
-        rows = cursor.fetchall()
 
-    return [
-        {
-            "rule_name": row[0],
-            "alert_count": row[1],
-            "average_risk_score": to_float(row[2])
-        }
-        for row in rows
-    ]
-
-@app.get("/country-risk")
+@app.get("/country-risk", response_model=list[CountryRisk], tags=["Risk"])
 def get_country_risk():
+    """Approval, failure, cross-border and chargeback rates by country."""
     with get_cursor() as cursor:
         cursor.execute("""
             SELECT
@@ -132,23 +127,17 @@ def get_country_risk():
             FROM mart.country_risk_summary
             ORDER BY total_transactions DESC;
         """)
+        return cursor.fetchall()
 
-        rows = cursor.fetchall()
 
-    return [
-        {
-            "country_code": row[0],
-            "total_transactions": row[1],
-            "approval_rate_pct": to_float(row[2]),
-            "failure_rate_pct": to_float(row[3]),
-            "cross_border_rate_pct": to_float(row[4]),
-            "chargeback_rate_pct": to_float(row[5])
-        }
-        for row in rows
-    ]
-
-@app.get("/customers/{customer_id}/risk")
+@app.get(
+    "/customers/{customer_id}/risk",
+    response_model=CustomerRisk,
+    tags=["Risk"],
+    responses={404: {"model": ErrorResponse, "description": "Customer not found"}},
+)
 def get_customer_risk(customer_id: int):
+    """Risk profile for one customer: activity, cross-border use, chargebacks and alerts."""
     with get_cursor() as cursor:
         cursor.execute("""
             SELECT
@@ -164,23 +153,9 @@ def get_customer_risk(customer_id: int):
             FROM mart.customer_risk_profile
             WHERE customer_id = %s;
         """, (customer_id,))
-
         row = cursor.fetchone()
 
     if row is None:
-        raise HTTPException(
-            status_code=404,
-            detail="Customer not found"
-        )
+        raise HTTPException(status_code=404, detail="Customer not found")
 
-    return {
-        "customer_id": row[0],
-        "total_transactions": row[1],
-        "approved_transactions": row[2],
-        "failed_transactions": row[3],
-        "total_transaction_amount": to_float(row[4]),
-        "avg_transaction_amount": to_float(row[5]),
-        "cross_border_transactions": row[6],
-        "chargeback_count": row[7],
-        "alert_count": row[8]
-    }
+    return row
