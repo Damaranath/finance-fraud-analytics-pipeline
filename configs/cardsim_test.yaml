@@ -1,0 +1,26 @@
+# TEST config: runs ingest.py on a small, deliberately corrupted file
+# to prove the validation and reject logging work.
+# Uses its own source_name so it never mixes with the real cardsim rows.
+
+source_name: cardsim_test       # stored in transactions_clean.source_dataset
+csv_path: tests/fixtures/cardsim_bad_rows.csv
+chunksize: 100000
+
+# same mapping as configs/cardsim.yaml
+column_map:
+  trans_num: transaction_id
+  cc_num: customer_id
+  amt: amount
+  trans_date_trans_time: txn_timestamp
+  merchant: merchant
+  category: category
+  is_fraud: is_fraud
+
+timestamp_format: "%Y-%m-%d %H:%M:%S"
+
+required_columns:
+  - transaction_id
+  - customer_id
+  - amount
+  - txn_timestamp
+  - is_fraud

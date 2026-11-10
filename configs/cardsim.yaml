@@ -1,0 +1,26 @@
+# Source config for the Kaggle "kartik2112/fraud-detection" simulated card dataset.
+# Paths are relative to the project root.
+
+source_name: cardsim            # stored in transactions_clean.source_dataset
+csv_path: data/fraudTrain.csv
+chunksize: 100000
+
+# source column -> standard column
+column_map:
+  trans_num: transaction_id
+  cc_num: customer_id
+  amt: amount
+  trans_date_trans_time: txn_timestamp
+  merchant: merchant
+  category: category
+  is_fraud: is_fraud
+
+timestamp_format: "%Y-%m-%d %H:%M:%S"
+
+# standard columns that must be present and non-empty on every row
+required_columns:
+  - transaction_id
+  - customer_id
+  - amount
+  - txn_timestamp
+  - is_fraud

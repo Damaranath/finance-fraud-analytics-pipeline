@@ -12,3 +12,4 @@ system.env
 *.bak
 
 data/
+logs/
